@@ -1,6 +1,7 @@
 import { useStackApp } from "@stackframe/react";
 import { Navigate } from "react-router-dom";
 import { identify } from "app/analytics";
+import { stackClientApp } from "./stack";
 
 const popFromLocalStorage = (key: string): string | null => {
   if (typeof window !== "undefined" && window.localStorage) {
@@ -13,6 +14,11 @@ const popFromLocalStorage = (key: string): string | null => {
 };
 
 export const LoginRedirect = () => {
+  // If Stack Auth is not configured, redirect to home
+  if (!stackClientApp) {
+    return <Navigate to="/" replace={true} />;
+  }
+
   const app = useStackApp();
 
   const queryParams = new URLSearchParams(window.location.search);

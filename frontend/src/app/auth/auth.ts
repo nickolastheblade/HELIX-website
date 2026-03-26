@@ -2,6 +2,10 @@ import { stackClientApp } from "./stack";
 
 export const auth = {
   getAuthHeaderValue: async (): Promise<string> => {
+    if (!stackClientApp) {
+      return "";
+    }
+    
     const user = await stackClientApp.getUser();
 
     if (!user) {
@@ -12,6 +16,10 @@ export const auth = {
     return `Bearer ${accessToken}`;
   },
   getAuthToken: async (): Promise<string> => {
+    if (!stackClientApp) {
+      return "";
+    }
+    
     const user = await stackClientApp.getUser();
 
     if (!user) {
