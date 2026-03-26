@@ -9,9 +9,14 @@ const configSchema = z.object({
 
 type StackAuthExtensionConfig = z.infer<typeof configSchema>;
 
-// This is set by vite.config.ts
-declare const __STACK_AUTH_CONFIG__: string;
+// Build config from individual environment variables
+const buildConfig = (): StackAuthExtensionConfig => {
+  return {
+    projectId: import.meta.env.VITE_STACK_AUTH_PROJECT_ID || "",
+    jwksUrl: import.meta.env.VITE_STACK_AUTH_JWKS_URL || "",
+    publishableClientKey: import.meta.env.VITE_STACK_AUTH_PUBLISHABLE_KEY || "",
+    handlerUrl: import.meta.env.VITE_STACK_AUTH_HANDLER_URL || "auth",
+  };
+};
 
-export const config: StackAuthExtensionConfig = configSchema.parse(
-  JSON.parse(__STACK_AUTH_CONFIG__),
-);
+export const config: StackAuthExtensionConfig = configSchema.parse(buildConfig());

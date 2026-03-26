@@ -3,49 +3,31 @@ export enum Mode {
   PROD = "production",
 }
 
-interface WithEnvMode {
-  readonly env: {
-    readonly MODE: Mode;
-  };
-}
+export const mode = import.meta.env.MODE as Mode;
 
-export const mode = (import.meta as unknown as WithEnvMode).env.MODE;
+// Application configuration from environment variables
+export const APP_ID = import.meta.env.VITE_APP_ID || "helix-gp";
 
-declare const __APP_ID__: string;
-export const APP_ID = __APP_ID__;
+export const API_PATH = import.meta.env.VITE_API_PATH || "/api";
 
-declare const __API_PATH__: string;
-export const API_PATH = __API_PATH__;
+export const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
-declare const __API_URL__: string;
-export const API_URL = __API_URL__;
+export const API_HOST = import.meta.env.VITE_API_HOST || "";
 
-declare const __API_HOST__: string;
-export const API_HOST = __API_HOST__;
+export const API_PREFIX_PATH = import.meta.env.VITE_API_PREFIX_PATH || "";
 
-declare const __API_PREFIX_PATH__: string;
-export const API_PREFIX_PATH = __API_PREFIX_PATH__;
+export const WS_API_URL = import.meta.env.VITE_WS_API_URL || "ws://localhost:8000";
 
-declare const __WS_API_URL__: string;
-export const WS_API_URL = __WS_API_URL__;
+export const APP_BASE_PATH = import.meta.env.VITE_APP_BASE_PATH || "/";
 
-declare const __APP_BASE_PATH__: string;
-export const APP_BASE_PATH = __APP_BASE_PATH__;
+export const APP_TITLE = import.meta.env.VITE_APP_TITLE || "Helix.GP";
 
-declare const __APP_TITLE__: string;
-export const APP_TITLE = __APP_TITLE__;
+export const APP_FAVICON_LIGHT = import.meta.env.VITE_APP_FAVICON_LIGHT || "/favicon-light.svg";
 
-declare const __APP_FAVICON_LIGHT__: string;
-export const APP_FAVICON_LIGHT = __APP_FAVICON_LIGHT__;
+export const APP_FAVICON_DARK = import.meta.env.VITE_APP_FAVICON_DARK || "/favicon-dark.svg";
 
-declare const __APP_FAVICON_DARK__: string;
-export const APP_FAVICON_DARK = __APP_FAVICON_DARK__;
+export const APP_DEPLOY_USERNAME = import.meta.env.VITE_APP_DEPLOY_USERNAME || "";
 
-declare const __APP_DEPLOY_USERNAME__: string;
-export const APP_DEPLOY_USERNAME = __APP_DEPLOY_USERNAME__;
+export const APP_DEPLOY_APPNAME = import.meta.env.VITE_APP_DEPLOY_APPNAME || "";
 
-declare const __APP_DEPLOY_APPNAME__: string;
-export const APP_DEPLOY_APPNAME = __APP_DEPLOY_APPNAME__;
-
-declare const __APP_DEPLOY_CUSTOM_DOMAIN__: string;
-export const APP_DEPLOY_CUSTOM_DOMAIN = __APP_DEPLOY_CUSTOM_DOMAIN__;
+export const APP_DEPLOY_CUSTOM_DOMAIN = import.meta.env.VITE_APP_DEPLOY_CUSTOM_DOMAIN || "";
