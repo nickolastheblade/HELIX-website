@@ -6,12 +6,14 @@ import tsConfigPaths from "vite-tsconfig-paths";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: process.env.VITE_APP_BASE_PATH || "/",
   plugins: [react(), tsConfigPaths(), injectHTML()],
   server: {
+    host: "0.0.0.0",
+    port: 3000,
+    allowedHosts: true,
     proxy: {
       "/api": {
-        target: "http://127.0.0.1:8000",
+        target: "http://127.0.0.1:8001",
         changeOrigin: true,
       },
     },
@@ -26,13 +28,5 @@ export default defineConfig({
     assetsDir: "assets",
     sourcemap: false,
     minify: "esbuild",
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ["react", "react-dom", "react-router-dom"],
-          ui: ["@chakra-ui/react", "@emotion/react", "@emotion/styled", "framer-motion"],
-        },
-      },
-    },
   },
 });
